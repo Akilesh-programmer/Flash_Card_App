@@ -32,7 +32,7 @@ finally:
     print(len(data_dict))
 
 
-random_choice_limit = len(data_dict)
+random_choice_limit = len(data_dict) - 1
 
 
 # ---------------------------------------------------Functions-----------------------------------------------------------
@@ -65,7 +65,7 @@ def game():
         global card_title
         global card_word
         global changed
-        english_word = data_dict[random_number]["English"]
+        english_word = current_set["English"]
         word = english_word
         language = "English"
         # We are deleting the previously created text because then we will be overlapping. Also, if we don't create it
@@ -84,7 +84,7 @@ def game():
         global card_title
         global changed
         language = "French"
-        french_word = data_dict[random_number]["French"]
+        french_word = current_set["French"]
         word = french_word
         canvas.delete(card_word)
         canvas.delete(card_title)
@@ -127,7 +127,7 @@ def correct():
     data_dict.remove(current_set)
 
     data = pandas.DataFrame(data_dict)
-    data.to_csv("words_to_learn.csv")
+    data.to_csv("words_to_learn.csv", index=False)
 
 
 def wrong():
